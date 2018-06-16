@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+
+    <meta charset="utf-8"/>
+    <title>UPLOAD</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="nacl/nacl-util.js"></script>
+    <script src="nacl/nacl.js"></script>
+    <script src="nacl/nacl.min.js"></script>
+    <style>
+
+        .myProgress {
+            width: 100%;
+            background-color: black;
+            opacity:0.7;
+
+        }
+        .myBar {
+            width: 0%;
+            height: 20px;
+            background-color: mediumspringgreen;
+        }
+        .myerrorBar {
+            width: 100%;
+            height: 20px;
+            background-color: red;
+        }
+        .left {
+            float:left;
+            width:400px;
+            height:668px;
+            align:center;
+        }
+        .right{
+            width:700px;
+            height:668px;
+            float:right;
+            align:center;
+            background-color: black;
+            opacity: 0.8;
+
+        }
+    </style>
+</head>
+<body>
+<form action="http://localhost:8081/files"  method="POST" enctype="multipart/form-data">
+
+        <div id="leftC" class="left">
+
+            <div class="row" align="left" style="text-align: center;"><h3 align="left"><b>&#8195;&#8195;&#8195;&#8195;File Upload</b></h3></div>
+            <HR align=left width=600px color=#987cb9 SIZE=1>
+            <div class="row" align="left" style="text-align:left">&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;Enter Password to Encrypt Files</div>
+            <div class="row" align="right"><input type="password" style="width: 340px" class="form-control input-sm" id="passwd"></div>
+            <HR  width=600px color=#987cb9 SIZE=1>
+
+            <div class="row" align="right"><div class="row" style="text-align:left">&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;Upload Files</div><input type="text" style="width:340px;" disabled class="form-control input-sm" id ="fnm"></div>
+            <div class="row" align="right"><label align="left" class="btn btn-default btn-file">Browse
+                <input type="file" name="fileUploader" id="fileUploader" style="display: none">
+            </label>
+                <input type="button" id="btnUpload" align="right" style="width: 265px" class="btn btn-default" value="UPLOAD" onclick="uploadSingleFiles()">
+            </div>
+
+        </div>
+        <div class="right" id="divFiles">
+
+        </div>
+
+
+<script type="text/javascript">
+
+    var count = 0 ;
+    var upload = document.getElementById("fileUploader");
+
+    //judge the browses whether support FileReader
+    if(typeof FileReader == 'undefined'){
+        alert('your browser does not support FileReader,please upgrade your browser!')
+        //make the upload disabled
+        upload.setAttribute("disabled","disabled");
+    }
+
+    var uDate = getNowFormatDate();
+    $('#divFiles').html('<div class="container" style="background-color:black;width:580px;height:90px;opacity:0.5;"><div class="row"><h3 style="text-align: left"><font color="white" align="left"><b>Progress</b></font></h3></div><div class="row"><div style="width:130px;float:left"><font color="white"><b>DATE</b></font></div><div  style="width:150px;float:left"><font color="white"><b>NAME</b></font></div><div style="width:300px;float:right"><font color="white"><b>PROGRESS</b></font></div></div></div>');
+    $(document).ready(function () {
+        $('input[type=file]').change(function () {
+            $('#btnUpload').show();
+            //fill the file chooser input
+            var fileinput = document.getElementById("fnm");
+            fileinput.value = this.files[0].name;
+            count += 1;//add one when uploading a file
+            //to generate the data file name and progress bar
+            $("#divFiles").append('<div class="container" style="background-color:black;width:580px;opacity:0.8;min-height:25px;border-radius: 3px;"><div class="row"><div style="width:130px;float:left"><font color="white">'+ uDate +'</font></div><div  style="width:150px;float:left"><font color="white">'+ this.files[0].name +'</font></div><div  style="width:300px;float:left" ><div id="progress'+ count +'" class="myProgress" > <div id="bar'+count+'" class="myBar" style="border-radius: 20px"></div></div></div></div></div>');
+            $("#divFiles").append('<div class="container" style="background-color: black;width: 580px;min-height:10px;opacity: 0.5;align:right;"><div class="row"><div id="errmsg'+count+'"></div></div></div>');
+
+        })
+    });
+
+    /*
+     can be used to upload multiple files
+     */
+    function uploadFiles() {
+        var file = document.getElementById("fileUploader")//iterate the files list
+
+        for (var i = 0; i < file.files.length; i++) {
+            //uploadSingleFile(file.files[i], i);
+        }
+    }
+
+    //function uploadSingleFile(file, i) {
+    function uploadSingleFiles() {
+
+        var file = document.getElementById("fileUploader");
+        var i = count;// i is the element number
+
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file.files[0]);
+        reader.onload = function(){
+
+            //cryptography	block
+            var buf  = reader.result;
+            var decoder = new TextDecoder("utf-8");
+            var res = decoder.decode(new Uint8Array(buf));
+            var mesg = nacl.util.decodeUTF8(res);
+            var nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+            var key = nacl.randomBytes(nacl.secretbox.keyLength);
+            var cipermsg = nacl.secretbox(mesg,nonce,key);
+            var blob = new Blob([cipermsg]);
+
+            //not cryptography block,use reader.result directly
+            //var blob = new Blob([reader.result]);
+
+
+            var ajax = new XMLHttpRequest();
+
+            var username = "admin";
+            var token = "5R7F9Y*HG$JK0M#JL";//when login a token is generated send to user and keep in database or redis in server-side as active user's information.
+                                            // and keep live when user is active. after that it will expire,and a new one will be generated when login in next time .
+                                            //when upload a file,the token will be checked.
+
+            ajax.open("POST", "/files?filename="+file.files[0].name+"&name="+username+"&token="+token);
+
+            var uploaderForm = new FormData(); // Create new FormData
+            uploaderForm.append("fileUploader", blob);
+
+            ajax.upload.addEventListener("progress", function (e) {
+                var percent = (e.loaded / e.total) * 100;
+                // set the progress bar
+                var elem = document.getElementById("bar"+i);
+                elem.style.width = percent + '%';
+
+            }, false);
+
+            ajax.onreadystatechange = function () {
+
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var data = eval('(' + ajax.responseText + ')');
+                    console.info(data);
+                    if (data.success) {
+                        //sucess display   success message
+                        var msg = document.getElementById("errmsg"+i);
+                        var text ='<font color="white" align="right">'+ data.message +'</font>';
+                        msg.innerHTML += text;
+
+                    } else {
+                        //error display error messages as well as red progress bar on the file list
+                        var elem = document.getElementById("bar"+i);
+                        elem.className = "myerrorBar";
+                        var msg1 = document.getElementById("errmsg"+i);
+                        var text ='<font color="red">'+ data.message +'</font>';
+                        msg1.innerHTML += text;
+
+                    }
+                }
+            }
+
+            ajax.send(uploaderForm);
+
+        }
+
+    }
+
+    function ab2str(buf) {
+        var str = "";
+        var ab = new Uint16Array(buf);
+        var abLen = ab.length;
+        var CHUNK_SIZE = Math.pow(2, 18);
+        var offset, len, subab;
+        for (offset = 0; offset < abLen; offset += CHUNK_SIZE) {
+            len = Math.min(CHUNK_SIZE, abLen-offset);
+            subab = ab.subarray(offset, offset+len);
+            str += String.fromCharCode.apply(null, subab);
+        }
+        return str;
+    }
+
+    // time util
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "/";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        return strDate + seperator1 + month + seperator1 +  year ;
+    }
+
+
+</script>
+
+</form>
+</body>
+</html>

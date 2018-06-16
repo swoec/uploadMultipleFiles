@@ -1,0 +1,12 @@
+{
+  "name": "upload",
+  "version": "1.0.0",
+  "main": "db.js",
+  "scripts": {
+    "start": "node expresserver.js"
+  },
+  "keywords": [],
+  "author": "Alex Wang",
+  "license": "ISC",
+  "description": "a server accepts files "
+}
