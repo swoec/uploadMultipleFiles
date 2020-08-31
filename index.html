@@ -62,15 +62,21 @@
 
             <div class="row" align="left" style="text-align: center;"><h3 align="left"><b>&#8195;&#8195;&#8195;&#8195;File Upload</b></h3></div>
             <HR align=left width=600px color=#987cb9 SIZE=1>
-            <div class="row" align="left" style="text-align:left">&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;Enter Password to Encrypt Files</div>
-            <div class="row" align="right"><input type="password" style="width: 340px" class="form-control input-sm" id="passwd"></div>
+            <!--<div class="row" align="left" style="text-align:left">&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;Enter Password to Encrypt Files</div>-->
+            <!--<div class="row" align="right"><input type="password" style="width: 340px" class="form-control input-sm" id="passwd"></div>-->
             <HR  width=600px color=#987cb9 SIZE=1>
 
             <div class="row" align="right"><div class="row" style="text-align:left">&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;Upload Files</div><input type="text" style="width:340px;" disabled class="form-control input-sm" id ="fnm"></div>
-            <div class="row" align="right"><label align="left" class="btn btn-default btn-file">Browse
-                <input type="file" name="fileUploader" id="fileUploader" style="display: none">
+            <div class="row" align="right">
+                <label align="left" class="btn btn-default btn-file">Browse
+                <input type="file"  multiple="multiple" name="fileUploader" id="fileUploader"  accept="image/*" style="display: none">
             </label>
-                <input type="button" id="btnUpload" align="right" style="width: 265px" class="btn btn-default" value="UPLOAD" onclick="uploadSingleFiles()">
+                <select id="resolution" name="resolution">
+                    <option value="HD">HD</option>
+                    <option value="4K">4K</option>
+                    <option value="FullHD">FullHD</option>
+                </select>
+                <input type="button" id="btnUpload" align="right" style="width: 195px" class="btn btn-default" value="UPLOAD" onclick="uploadFiles()">
             </div>
 
         </div>
@@ -83,6 +89,7 @@
 
     var count = 0 ;
     var upload = document.getElementById("fileUploader");
+    var resolution = document.getElementById("resolution");
 
     //judge the browses whether support FileReader
     if(typeof FileReader == 'undefined'){
@@ -114,18 +121,29 @@
         var file = document.getElementById("fileUploader")//iterate the files list
 
         for (var i = 0; i < file.files.length; i++) {
-            //uploadSingleFile(file.files[i], i);
+            uploadSingleFiles(file.files[i], i);
         }
     }
 
     //function uploadSingleFile(file, i) {
-    function uploadSingleFiles() {
+    function uploadSingleFiles(file,ci) {
 
-        var file = document.getElementById("fileUploader");
-        var i = count;// i is the element number
+        // var file = document.getElementById("fileUploader");
+        // var i = count;// i is the element number
+
+        var file = file;
+        var i = ci;// i is the element number
 
         var reader = new FileReader();
-        reader.readAsArrayBuffer(file.files[0]);
+
+
+        reader.readAsArrayBuffer(file);
+
+
+
+
+
+
         reader.onload = function(){
 
             //cryptography	block
@@ -137,6 +155,10 @@
             var key = nacl.randomBytes(nacl.secretbox.keyLength);
             var cipermsg = nacl.secretbox(mesg,nonce,key);
             var blob = new Blob([cipermsg]);
+            var resolutions = document.getElementById("resolution");
+
+            var resolution = resolutions.options[resolutions.selectedIndex].value;
+            console.log(resolution);
 
             //not cryptography block,use reader.result directly
             //var blob = new Blob([reader.result]);
@@ -149,7 +171,7 @@
                                             // and keep live when user is active. after that it will expire,and a new one will be generated when login in next time .
                                             //when upload a file,the token will be checked.
 
-            ajax.open("POST", "/files?filename="+file.files[0].name+"&name="+username+"&token="+token);
+            ajax.open("POST", "/files?filename="+file.name+"&name="+username+"&resolution="+resolution);
 
             var uploaderForm = new FormData(); // Create new FormData
             uploaderForm.append("fileUploader", blob);
