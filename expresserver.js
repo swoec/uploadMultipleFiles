@@ -41,7 +41,6 @@ app.post('/files',function (req, res) {
                         filename: fullUrl
                     };
                 }
-                console.log(response);
                 res.end(JSON.stringify(response));
             });
         });
