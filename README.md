@@ -1,5 +1,5 @@
 # Fileupload
-a sample nodejs project for file upload 
+a simple project to upload multiple files
 
 to run :
 

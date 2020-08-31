@@ -2,36 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6a06877-ad2a-4405-b5ff-a9915975a407" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl-fast.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl-fast.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl-util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl-util.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacl/nacl.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-Black.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-BlackIt.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-Bold.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-BoldIt.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-ExtraLight.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-ExtraLightIt.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-It.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-Light.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-LightIt.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-Regular.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-Semibold.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/SourceSansPro/SourceSansPro-SemiboldIt.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/cancel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/mockup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/reupload.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pic/tick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/expresserver.js" beforeDir="false" afterPath="$PROJECT_DIR$/expresserver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/filestoredplace" beforeDir="false" afterPath="$PROJECT_DIR$/start.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online_user.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            <state relative-caret-position="15">
+              <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -156,12 +127,6 @@
               <item name="Fileupload" type="b2602c69:ProjectViewProjectNode" />
               <item name="Fileupload" type="462c0819:PsiDirectoryNode" />
               <item name="file" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Fileupload" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Fileupload" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-              <item name="HD" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -237,12 +202,12 @@
       <workItem from="1528961532577" duration="17474000" />
       <workItem from="1598844261320" duration="2988000" />
       <workItem from="1598848194098" duration="1277000" />
-      <workItem from="1598849503320" duration="7558000" />
+      <workItem from="1598849503320" duration="8001000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122652000" />
+    <option name="totallyTimeSpent" value="123095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1347" y="25" width="1533" height="875" extended-state="6" />
@@ -375,8 +340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        <state relative-caret-position="15">
+          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
         </state>
       </provider>
     </entry>
